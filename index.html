@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Доктор М. Б. Салиба | Хирург-эндокринолог</title>
+  
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            emerald: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS for Animations -->
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    
+    .animate-on-scroll { 
+      opacity: 0; 
+      transform: translateY(20px); 
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+    }
+    .animate-on-scroll.visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    
+    /* Mobile Menu Transition */
+    #mobile-menu {
+      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+    #mobile-menu.open {
+      max-height: 400px;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 w-full border-b bg-white/90 backdrop-blur-md">
+    <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="#" class="font-bold text-xl text-slate-800 flex items-center gap-3 hover:opacity-90 transition-opacity">
+        <!-- SVG Логотип: Концепция "Бабочка-Крест" (Доли щитовидной железы + медицинский крест) -->
+        <svg class="w-8 h-8 text-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Левое крыло (левая доля щитовидной железы) -->
+          <path d="M12 21C8 18 5 14 5 10C5 6 8 3.5 12 5" />
+          <!-- Правое крыло (правая доля щитовидной железы) -->
+          <path d="M12 21C16 18 19 14 19 10C19 6 16 3.5 12 5" />
+          <!-- Перешеек (вертикальная ось) -->
+          <line x1="12" y1="5" x2="12" y2="21" />
+          <!-- Пересечение, образующее медицинский крест -->
+          <line x1="8.5" y1="11" x2="15.5" y2="11" />
+        </svg>
+        <span class="tracking-tight text-slate-900 font-bold">М. Б. Салиба</span>
+      </a>
+      
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <a href="#about" class="hover:text-emerald-600 transition-colors">О враче</a>
+        <a href="#services" class="hover:text-emerald-600 transition-colors">Услуги</a>
+        <a href="#innovations" class="hover:text-emerald-600 transition-colors">Инновации</a>
+        <a href="#teaching" class="hover:text-emerald-600 transition-colors">Преподавание</a>
+        <a href="#reviews" class="hover:text-emerald-600 transition-colors">Отзывы</a>
+        <a href="#locations" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-md transition-colors shadow-sm">Записаться</a>
+      </nav>
+      
+      <!-- Mobile Toggle -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-emerald-600">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile Nav -->
+    <div id="mobile-menu" class="md:hidden bg-white border-b absolute w-full shadow-lg">
+      <nav class="flex flex-col p-4 gap-4 text-sm font-medium text-slate-600">
+        <a href="#about" class="mobile-link hover:text-emerald-600">О враче</a>
+        <a href="#services" class="mobile-link hover:text-emerald-600">Услуги</a>
+        <a href="#innovations" class="mobile-link hover:text-emerald-600">Инновации</a>
+        <a href="#teaching" class="mobile-link hover:text-emerald-600">Преподавание</a>
+        <a href="#reviews" class="mobile-link hover:text-emerald-600">Отзывы</a>
+        <a href="#locations" class="mobile-link text-emerald-600 font-bold">Записаться на прием</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    
+    <!-- HERO -->
+    <section class="relative overflow-hidden bg-slate-50 pt-16 md:pt-24 pb-24 md:pb-32">
+      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+        <div class="flex-1 space-y-6 animate-on-scroll">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-sm font-medium">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            Ведется прием
+          </div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-tight">
+            Салиба <br />
+            <span class="text-emerald-600">Максим Бошрович</span>
+          </h1>
+          <p class="text-lg md:text-xl text-slate-600 max-w-2xl font-light">
+            Хирург высшей категории, кандидат медицинских наук, доцент Сеченовского Университета.
+          </p>
+          <p class="text-slate-600 max-w-2xl">
+            Экспертная хирургическая помощь: от бережных амбулаторных манипуляций до сложных высокотехнологичных операций на щитовидной железе и органах брюшной полости.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 pt-4">
+            <a href="#locations" class="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-sm">
+              <i data-lucide="calendar" class="w-5 h-5"></i>
+              Записаться на консультацию
+            </a>
+            <a href="#about" class="inline-flex items-center justify-center gap-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 px-6 py-3 rounded-lg font-medium transition-colors">
+              Узнать больше
+            </a>
+          </div>
+          
+          <!-- Quick Stats -->
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-6 pt-8 border-t border-slate-200 mt-8">
+            <div>
+              <div class="font-bold text-2xl text-slate-900 flex items-center gap-2">
+                <i data-lucide="calendar" class="text-emerald-500 w-6 h-6"></i> 20+ лет
+              </div>
+              <div class="text-sm text-slate-500">практики в хирургии</div>
+            </div>
+            <div>
+              <div class="font-bold text-2xl text-slate-900 flex items-center gap-2">
+                <i data-lucide="stethoscope" class="text-emerald-500 w-6 h-6"></i> к.м.н.
+              </div>
+              <div class="text-sm text-slate-500">ученая степень</div>
+            </div>
+            <div>
+              <div class="font-bold text-2xl text-slate-900 flex items-center gap-2">
+                <i data-lucide="graduation-cap" class="text-emerald-500 w-6 h-6"></i> Доцент
+              </div>
+              <div class="text-sm text-slate-500">Сеченовского Университета</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Image Area (Photo 02-1.jpeg inserted) -->
+        <div class="flex-1 relative animate-on-scroll delay-100 w-full max-w-md mx-auto mt-8 md:mt-0">
+          <div class="aspect-[4/5] w-full rounded-2xl overflow-hidden bg-slate-200 relative shadow-2xl">
+            <!-- Внедренное реальное фото врача -->
+            <img src="02-1.jpeg" alt="Хирург Максим Бошрович Салиба" class="object-cover w-full h-full relative z-10" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent z-20"></div>
+          </div>
+          <div class="absolute -bottom-6 -left-2 md:-left-6 bg-white p-4 rounded-xl shadow-lg border border-slate-100 flex items-center gap-4 z-30">
+            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+              <i data-lucide="award" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <div class="font-bold text-slate-900">Высшая категория</div>
+              <div class="text-xs text-slate-500">Врач-хирург</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center mb-16 animate-on-scroll">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Опыт, доверие и научный подход</h2>
+          <div class="w-16 h-1 bg-emerald-500 mx-auto mb-8"></div>
+          <p class="text-lg text-slate-600 italic">
+            «Мой путь в медицине начался в стенах Сеченовского Университета, где я прошел все ступени — от студента до доцента кафедры факультетской хирургии. Для меня хирургия — это сочетание проверенных академических стандартов, бережного отношения к тканям пациента и внедрения передовых малоинвазивных технологий.
+          </p>
+          <p class="text-lg text-slate-600 italic mt-4">
+            Я убежден, что успешное лечение строится на взаимном доверии между врачом и пациентом. Каждый клинический случай индивидуален, поэтому моя цель — подобрать наиболее щадящую и эффективную методику лечения».
+          </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+          <h3 class="text-2xl font-bold text-slate-900 mb-8 text-center animate-on-scroll">Краткая автобиография</h3>
+          <div class="grid md:grid-cols-2 gap-8">
+            
+            <div class="flex gap-4 p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow animate-on-scroll">
+              <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+                <i data-lucide="graduation-cap"></i>
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-emerald-600 mb-1">Базовое образование</div>
+                <h4 class="font-bold text-slate-900 mb-1">Первый МГМУ им. И. М. Сеченова</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Специальность «Лечебное дело»</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-4 p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow animate-on-scroll delay-100">
+              <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+                <i data-lucide="book-open"></i>
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-emerald-600 mb-1">Специализация</div>
+                <h4 class="font-bold text-slate-900 mb-1">Интернатура и ординатура</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Специальность «Хирургия» на клинической базе академии</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-4 p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow animate-on-scroll">
+              <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+                <i data-lucide="award"></i>
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-emerald-600 mb-1">2014</div>
+                <h4 class="font-bold text-slate-900 mb-1">Кандидат медицинских наук</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Защита диссертации по УЗ-диагностике и лечению первичного гиперпаратиреоза</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-4 p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow animate-on-scroll delay-100">
+              <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+                <i data-lucide="microscope"></i>
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-emerald-600 mb-1">Настоящее время</div>
+                <h4 class="font-bold text-slate-900 mb-1">Доцент и завуч</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Кафедра факультетской хирургии №1 ИКМ им. Н.В. Склифосовского</p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-24 bg-slate-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 animate-on-scroll">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Специализация и направления лечения</h2>
+          <div class="w-16 h-1 bg-emerald-500 mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg transition-shadow animate-on-scroll">
+            <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
+              <i data-lucide="activity" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">Эндокринная хирургия</h3>
+            <ul class="space-y-3">
+              <li class="flex gap-3 text-slate-600"><span class="text-emerald-500 mt-1">•</span> <span class="leading-relaxed">Лечение заболеваний щитовидной и околощитовидных желез</span></li>
+              <li class="flex gap-3 text-slate-600"><span class="text-emerald-500 mt-1">•</span> <span class="leading-relaxed">Оперативное лечение узлового зоба и гиперпаратиреоза</span></li>
+              <li class="flex gap-3 text-slate-600"><span class="text-emerald-500 mt-1">•</span> <span class="leading-relaxed">Использование щадящих операционных доступов</span></li>
+            </ul>
+          </div>
+          
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg transition-shadow animate-on-scroll delay-100">
+            <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
+              <i data-lucide="scissors" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">Абдоминальная хирургия</h3>
+            <ul class="space-y-3">
+              <li class="flex gap-3 text-slate-600"><span class="text-emerald-500 mt-1">•</span> <span class="leading-relaxed">Операции на органах брюшной полости</span></li>
+              <li class="flex gap-3 text-slate-600"><span class="text-emerald-500 mt-1">•</span> <span class="leading-relaxed">Лапароскопические (малотравматичные) вмешательства</span></li>
+              <li class="flex gap-3 text-slate-600"><span class="text-emerald-500 mt-1">•</span> <span class="leading-relaxed">Лечение грыж передней брюшной стенки, холецистита</span></li>
+            </ul>
+          </div>
+          
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg transition-shadow animate-on-scroll">
+            <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
+              <i data-lucide="scan-line" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">Малоинвазивные методы</h3>
+            <ul class="space-y-3">
+              <li class="flex gap-3 text-slate-600"><span class="text-emerald-500 mt-1">•</span> <span class="leading-relaxed">Микроволновая абляция новообразований</span></li>
+              <li class="flex gap-3 text-slate-600"><span class="text-emerald-500 mt-1">•</span> <span class="leading-relaxed">Использование современных ультразвуковых методов навигации в процессе операций</span></li>
+            </ul>
+          </div>
+          
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg transition-shadow animate-on-scroll delay-100">
+            <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
+              <i data-lucide="bandage" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">Амбулаторная хирургия</h3>
+            <ul class="space-y-3">
+              <li class="flex gap-3 text-slate-600"><span class="text-emerald-500 mt-1">•</span> <span class="leading-relaxed">Прием и консультации пациентов</span></li>
+              <li class="flex gap-3 text-slate-600"><span class="text-emerald-500 mt-1">•</span> <span class="leading-relaxed">Удаление доброкачественных новообразований кожи (липомы, атеромы)</span></li>
+              <li class="flex gap-3 text-slate-600"><span class="text-emerald-500 mt-1">•</span> <span class="leading-relaxed">Первичная хирургическая обработка ран, удаление инородных тел</span></li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- INNOVATIONS -->
+    <section id="innovations" class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 animate-on-scroll">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Наука на службе здоровья</h2>
+          <div class="w-16 h-1 bg-emerald-500 mx-auto mb-6"></div>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+            Научная деятельность позволяет внедрять в практику методы, которые делают операции более безопасными и сокращают период реабилитации.
+          </p>
+        </div>
+        
+        <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          
+          <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 animate-on-scroll">
+            <div class="w-12 h-12 bg-white shadow-sm border border-slate-100 text-emerald-600 rounded-lg flex items-center justify-center mb-6">
+              <i data-lucide="lightbulb"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">Разработка «Туннелера»</h3>
+            <p class="text-slate-600 leading-relaxed">Под руководством М. Б. Салибы был разработан и напечатан на 3D-принтере специальный туннелер, позволяющий выполнять эндоскопические операции на щитовидной железе через полость рта (TOETVA) в два раза быстрее и безопаснее для пациента.</p>
+          </div>
+          
+          <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 animate-on-scroll delay-100">
+            <div class="w-12 h-12 bg-white shadow-sm border border-slate-100 text-emerald-600 rounded-lg flex items-center justify-center mb-6">
+              <i data-lucide="shield-check"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">Термометрия при абляции</h3>
+            <p class="text-slate-600 leading-relaxed">Участие в разработке систем точного контроля температуры при микроволновой абляции околощитовидных желез для предотвращения повреждения окружающих здоровых тканей.</p>
+          </div>
+          
+          <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 animate-on-scroll delay-200">
+            <div class="w-12 h-12 bg-white shadow-sm border border-slate-100 text-emerald-600 rounded-lg flex items-center justify-center mb-6">
+              <i data-lucide="fingerprint"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">Методика TOETVA</h3>
+            <p class="text-slate-600 leading-relaxed">Удаление щитовидной железы через преддверие рта. На коже шеи и тела не остается абсолютно никаких шрамов. Высокая точность визуализации и быстрое восстановление пациента.</p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- TEACHING -->
+    <section id="teaching" class="py-24 bg-slate-900 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center mb-16 animate-on-scroll">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Наставничество и симуляции</h2>
+          <div class="w-16 h-1 bg-emerald-500 mx-auto mb-6"></div>
+          <p class="text-lg text-slate-300">
+            Подготовка нового поколения врачей в Сеченовском университете с использованием передовых технологий.
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 animate-on-scroll">
+            <div class="w-14 h-14 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mb-6">
+              <i data-lucide="users" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Школа мастерства</h3>
+            <p class="text-slate-300 mb-6 leading-relaxed">
+              В качестве руководителя и наставника в «Школе мастерства» Максим Бошрович привлекает студентов старших курсов к реальной научной и изобретательской деятельности, обучая не только хирургической технике, но и клиническому мышлению.
+            </p>
+            <ul class="space-y-2 text-slate-400">
+              <li class="flex gap-2"><span class="text-emerald-500">✓</span> Разбор реальных клинических случаев</li>
+              <li class="flex gap-2"><span class="text-emerald-500">✓</span> Участие в обходах и операциях</li>
+              <li class="flex gap-2"><span class="text-emerald-500">✓</span> Первые научные публикации студентов</li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 animate-on-scroll delay-100">
+            <div class="w-14 h-14 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mb-6">
+              <i data-lucide="microscope" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Тканеэквивалентные фантомы</h3>
+            <p class="text-slate-300 mb-6 leading-relaxed">
+              Активное участие во внедрении высокореалистичных органов-фантомов молочной железы (разработка Передовой инженерной школы). Это позволяет ординаторам отрабатывать сложнейшие манипуляции без риска для реальных пациентов.
+            </p>
+            <blockquote class="border-l-4 border-emerald-500 pl-4 text-slate-400 italic">
+              «Это бесценный опыт без риска для пациента» — М. Б. Салиба
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL / HUMANITARIAN -->
+    <section class="py-24 bg-emerald-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-16 animate-on-scroll">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Гуманитарная и этико-просветительская деятельность</h2>
+            <div class="w-16 h-1 bg-emerald-500 mx-auto"></div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-emerald-100 animate-on-scroll">
+              <div class="flex items-center gap-4 mb-6">
+                <i data-lucide="globe" class="text-emerald-600 w-8 h-8"></i>
+                <h3 class="text-xl font-bold text-slate-900">Членство в ИППО</h3>
+              </div>
+              <p class="text-slate-600 leading-relaxed">
+                Действительный член Императорского Православного Палестинского Общества (с 2022 года). Участие в организации позволяет вносить вклад в сохранение исторического наследия, развитие гуманитарных миссий и поддержку благотворительных медицинских инициатив.
+              </p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-emerald-100 animate-on-scroll delay-100">
+              <div class="flex items-center gap-4 mb-6">
+                <i data-lucide="heart" class="text-emerald-600 w-8 h-8"></i>
+                <h3 class="text-xl font-bold text-slate-900">Бог и человек в медицине</h3>
+              </div>
+              <p class="text-slate-600 leading-relaxed">
+                Спикер просветительских семинаров-дискуссий, посвященных наследию В. Ф. Войно-Ясенецкого (Святителя Луки). Обсуждение границ ответственности врача, психологической поддержки пациентов и преодоления профессионального выгорания через духовные ориентиры.
+              </p>
+            </div>
+          </div>
+          <div class="mt-12 text-center text-slate-600 italic bg-white p-6 rounded-xl border border-emerald-100 shadow-sm max-w-3xl mx-auto animate-on-scroll">
+            «Современная медицина не должна превращаться в бездушный конвейер. Истинное врачевание требует от специалиста сострадания, способности разделить боль пациента и расценивать свой труд как высокое служение обществу и человеку.»
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 animate-on-scroll">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Отзывы пациентов</h2>
+          <div class="w-16 h-1 bg-emerald-500 mx-auto mb-6"></div>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+            Отзывы реальных пациентов, опубликованные на независимых медицинских порталах.
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
+          
+          <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 relative animate-on-scroll">
+            <div class="flex gap-1 mb-6">
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+            </div>
+            <p class="text-slate-700 italic mb-6 relative z-10 leading-relaxed">
+              "Выражаю искреннюю благодарность Максиму Бошровичу за успешно проведенную операцию на щитовидной железе. Шов практически незаметен, а отношение доктора — исключительно теплое и профессиональное."
+            </p>
+            <div class="mt-auto">
+              <div class="font-bold text-slate-900">Татьяна К.</div>
+              <div class="flex flex-wrap gap-2 mt-3">
+                <span class="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md">Щитовидная железа</span>
+                <span class="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md">Аккуратный шов</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 relative animate-on-scroll delay-100">
+            <div class="flex gap-1 mb-6">
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+            </div>
+            <p class="text-slate-700 italic mb-6 relative z-10 leading-relaxed">
+              "Внимательный, спокойный и очень грамотный специалист. Оперировал пожилого отца (удаление желчного пузыря). Всё прошло без осложнений, доктор постоянно был на связи и подбадривал нас."
+            </p>
+            <div class="mt-auto">
+              <div class="font-bold text-slate-900">Михаил</div>
+              <div class="flex flex-wrap gap-2 mt-3">
+                <span class="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md">Холецистит</span>
+                <span class="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md">Пожилой пациент</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 relative animate-on-scroll delay-200">
+            <div class="flex gap-1 mb-6">
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+              <i data-lucide="star" class="text-amber-400 fill-amber-400 w-5 h-5"></i>
+            </div>
+            <p class="text-slate-700 italic mb-6 relative z-10 leading-relaxed">
+              "Врач от Бога! Провел симультанную операцию — одновременно удалил зоб и желчный пузырь. Восстановление прошло быстро, очень благодарна за чуткое отношение и золотые руки."
+            </p>
+            <div class="mt-auto">
+              <div class="font-bold text-slate-900">Елена</div>
+              <div class="flex flex-wrap gap-2 mt-3">
+                <span class="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md">Симультанная операция</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATIONS -->
+    <section id="locations" class="py-24 bg-slate-50 border-t border-slate-200">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 animate-on-scroll">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Адреса приёма и запись</h2>
+          <div class="w-16 h-1 bg-emerald-500 mx-auto"></div>
+        </div>
+        
+        <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          
+          <div class="space-y-6">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 animate-on-scroll">
+              <div class="flex items-start gap-4 mb-6">
+                <i data-lucide="building-2" class="text-emerald-600 flex-shrink-0 mt-1 w-7 h-7"></i>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-1">Государственный приём (Москва)</h3>
+                  <p class="text-slate-500 text-sm">В рамках ОМС, ДМС или коммерческого приема</p>
+                </div>
+              </div>
+              <div class="space-y-4 mb-8">
+                <div class="flex gap-3 text-slate-600">
+                  <span class="font-semibold w-24 flex-shrink-0">Учреждение:</span>
+                  <span>УКБ №1 Сеченовского Университета (Клиника факультетской хирургии им. Н.Н. Бурденко)</span>
+                </div>
+                <div class="flex gap-3 text-slate-600">
+                  <span class="font-semibold w-24 flex-shrink-0">Адрес:</span>
+                  <span class="flex items-start gap-1">
+                    <i data-lucide="map-pin" class="mt-0.5 text-slate-400 flex-shrink-0 w-4 h-4"></i>
+                    г. Москва, ул. Большая Пироговская, д. 6, стр. 1
+                  </span>
+                </div>
+              </div>
+              <button class="w-full py-3 bg-emerald-50 text-emerald-700 font-medium rounded-lg hover:bg-emerald-100 transition-colors flex items-center justify-center gap-2">
+                <i data-lucide="phone" class="w-5 h-5"></i> Записаться через регистратуру УКБ №1
+              </button>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 animate-on-scroll delay-100">
+              <div class="flex items-start gap-4 mb-6">
+                <i data-lucide="building-2" class="text-emerald-600 flex-shrink-0 mt-1 w-7 h-7"></i>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-1">Частный приём (Московская обл.)</h3>
+                </div>
+              </div>
+              <div class="space-y-4 mb-8">
+                <div class="flex gap-3 text-slate-600">
+                  <span class="font-semibold w-24 flex-shrink-0">Учреждение:</span>
+                  <span>Сеть многопрофильных клиник «Семейная поликлиника»</span>
+                </div>
+                <div class="flex gap-3 text-slate-600">
+                  <span class="font-semibold w-24 flex-shrink-0">Адрес:</span>
+                  <span class="flex items-start gap-1">
+                    <i data-lucide="map-pin" class="mt-0.5 text-slate-400 flex-shrink-0 w-4 h-4"></i>
+                    г. Сергиев Посад (и др. филиалы)
+                  </span>
+                </div>
+              </div>
+              <button class="w-full py-3 bg-emerald-50 text-emerald-700 font-medium rounded-lg hover:bg-emerald-100 transition-colors flex items-center justify-center gap-2">
+                <i data-lucide="phone" class="w-5 h-5"></i> Записаться в «Семейную поликлинику»
+              </button>
+            </div>
+          </div>
+          
+          <div class="bg-slate-900 text-white p-8 rounded-2xl animate-on-scroll">
+            <div class="flex items-center gap-3 mb-8">
+              <i data-lucide="clipboard-list" class="text-emerald-400 w-8 h-8"></i>
+              <h3 class="text-2xl font-bold">Как подготовиться к приёму?</h3>
+            </div>
+            <p class="text-slate-300 mb-8">
+              Чтобы консультация прошла максимально продуктивно, на прием желательно принести результаты следующих исследований (если они проводились):
+            </p>
+            <div class="space-y-8">
+              <div>
+                <h4 class="text-emerald-400 font-bold mb-3 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center text-sm">1</span>
+                  При патологии щитовидной железы:
+                </h4>
+                <ul class="space-y-2 text-slate-300 ml-8 list-disc pl-2 marker:text-slate-600">
+                  <li>Свежее УЗИ щитовидной железы и лимфоузлов шеи (не старше 3 месяцев)</li>
+                  <li>Анализы крови: ТТГ, Т4 свободный, кальций общий и ионизированный, фосфор, ПТГ, витамин D</li>
+                  <li>Результаты тонкоигольной биопсии (ТАБ), если выполнялась</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-emerald-400 font-bold mb-3 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center text-sm">2</span>
+                  При абдоминальной патологии:
+                </h4>
+                <ul class="space-y-2 text-slate-300 ml-8 list-disc pl-2 marker:text-slate-600">
+                  <li>УЗИ органов брюшной полости (желчный пузырь, грыжи)</li>
+                  <li>Выписки о ранее перенесенных операциях (если они были)</li>
+                </ul>
+              </div>
+            </div>
+            <div class="mt-8 p-4 bg-slate-800/50 rounded-xl border border-slate-700 text-sm text-slate-400">
+              * Если у вас нет на руках этих исследований, врач назначит их во время первичной консультации.
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    
+  </main>
+
+  <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-sm">
+          © <script>document.write(new Date().getFullYear())</script> Салиба М. Б. Все права защищены.
+        </div>
+        <div class="text-center px-4 py-2 border border-slate-800 rounded-lg bg-slate-900/50">
+          <span class="text-slate-300 uppercase tracking-widest text-xs font-bold">
+            Имеются противопоказания. Необходима консультация специалиста.
+          </span>
+        </div>
+        <div class="flex gap-4 text-sm">
+          <a href="#" class="hover:text-white transition-colors">Политика конфиденциальности</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactivity Scripts -->
+  <script>
+    // 1. Initialize Icons
+    lucide.createIcons();
+
+    // 2. Mobile Menu Logic
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const links = document.querySelectorAll('.mobile-link');
+    
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('open');
+      });
+    });
+
+    // 3. Scroll Animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // Stop observing once animated
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
