@@ -68,6 +68,28 @@
     /* Language Toggle Rules */
     html:not([lang="en"]) .lang-en { display: none !important; }
     html[lang="en"] .lang-ru { display: none !important; }
+
+    /* Language switching transition */
+    main {
+      transition: opacity 0.15s ease-out, transform 0.15s ease-out, filter 0.15s ease-out;
+      will-change: opacity, transform, filter;
+    }
+    
+    .lang-transition-active {
+      opacity: 0 !important;
+      transform: translateY(4px);
+      filter: blur(1px);
+    }
+    
+    /* Globe icon rotation */
+    .rotate-globe {
+      animation: spin-globe 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes spin-globe {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
@@ -1005,11 +1027,31 @@
     // 4. Language Switcher Logic
     const toggleLang = () => {
       const html = document.documentElement;
-      const currentLang = html.getAttribute('lang') || 'ru';
-      const newLang = currentLang === 'ru' ? 'en' : 'ru';
-      html.setAttribute('lang', newLang);
-      localStorage.setItem('doc-lang', newLang);
-      updateTitle(newLang);
+      const main = document.querySelector('main');
+      const globes = document.querySelectorAll('[data-lucide="globe"]');
+      
+      // 1. Запуск анимации вращения иконки глобуса
+      globes.forEach(globe => {
+        globe.classList.add('rotate-globe');
+        // Удаляем класс после завершения анимации, чтобы ее можно было вызвать снова
+        setTimeout(() => globe.classList.remove('rotate-globe'), 400);
+      });
+
+      // 2. Плавное скрытие контента
+      main.classList.add('lang-transition-active');
+      
+      // 3. Смена языка на пике прозрачности (через 150мс)
+      setTimeout(() => {
+        const currentLang = html.getAttribute('lang') || 'ru';
+        const newLang = currentLang === 'ru' ? 'en' : 'ru';
+        
+        html.setAttribute('lang', newLang);
+        localStorage.setItem('doc-lang', newLang);
+        updateTitle(newLang);
+        
+        // 4. Плавное появление нового контента
+        main.classList.remove('lang-transition-active');
+      }, 150);
     };
 
     const updateTitle = (lang) => {
